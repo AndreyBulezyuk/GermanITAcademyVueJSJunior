@@ -1,13 +1,27 @@
 <template>
   <div id="app">
     <div id="nav">
+      <a href="https://git-academy.com">
+        <img src="https://cdn.shopify.com/s/files/1/0103/9050/3490/files/400dpiLogo_360x.png?v=1562581891">
+      </a> 
+      <hr>
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/productList">Productlist</router-link> | 
+      <router-link to="/productListParentChild">Productlist Parent Child</router-link> | 
+      <router-link to="/productListVuex">Productlist Vuex</router-link>
+      <hr>
     </div>
     <router-view/>
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {}
+  }
+}
+</script>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

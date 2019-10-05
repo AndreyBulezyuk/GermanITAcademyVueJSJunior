@@ -1,0 +1,49 @@
+<template>
+    <div class="container">
+        <!--#5 Parent Child Components - German IT Academy - www.git-academy.com -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    
+                    <!-- Use the key img in the products object to access the url of the image -->
+                    <img :src="products[productId].imgUrl" class="card-img-top" style="width:200px;"><br>
+                   
+                </h5>
+                <p class="card-text">
+                    {{ products[productId].name }}
+                    <p style="color: #bbbbbb;">
+                        <!-- The Content that was placed between the Child Component Tag <product-box> wil be
+                        displayed by the <slot> tag. -->
+                        <slot></slot>
+                    </p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <!-- Execute method to push an item to the <cart> array. Item = Product ID from the GET Param -->
+                <button class="btn btn-primary" href="#">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: "ProductBoxParentChild",
+    // Parameters that this Component will expect from the Parent/Importer.
+    props: ['productId'],
+    computed: {
+        products: {
+            get() {
+                // Retrieve store state directly. Alternative: Retrieve the value via vuex getter
+                return this.$store.getters.allProducts
+            },
+            set(value) {
+                this.$store.dispatch('addProduct', value)
+            }
+        }
+    }
+}
+</script>
