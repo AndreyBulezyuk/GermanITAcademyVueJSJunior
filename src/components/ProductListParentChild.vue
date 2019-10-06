@@ -17,8 +17,10 @@
              <!-- Same v-for loop as previously discussed. Only this time the array with products is stored
              in the centralized vuex-store.  -->
             <div v-for="(product, key) in this.products" class="card" :key="key" style="width:33%">
-                <product-box :productId="key">
+                <product-box @DeleteItem="handleEvent" :someDataName="someObject" :productId="key">
+                    <hr>
                     <h6>Note: This Product is new!</h6>
+                    <hr>
                 </product-box>
             </div>
          </div>
@@ -40,7 +42,22 @@ export default {
     // You can access the Child Component trough this.$children 
     // You can also access the Child Component in <template> with <product-box>.
     components: {
-        'product-box' : ProductBoxParentChild
+        'product-box' : ProductBoxParentChild,
+
+    },
+    methods: {
+        handleEvent(payload) {
+            console.log('Event incoming')
+            console.log(payload)
+        }
+    },
+    data(){
+        return {
+            someObject: {
+                key1: 'value1',
+                key2: 'value2'
+            }
+        }
     },
     computed: {
         products: {

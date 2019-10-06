@@ -42,9 +42,10 @@ export default new Vuex.Store({
       // Mutate the State.
       state.products.push(product)
     },
-    pushCart (state, product) {
+    pushCart (state, key) {
       // Mutate the State.
-      state.cart.push(product)
+      console.log('i am in mutation')
+      state.cart.push(key)
     },
     removeCart (state, product) {
       // Find Product in the cart
@@ -62,9 +63,10 @@ export default new Vuex.Store({
       // Commit the mutation
       context.commit('pushProduct', productObject)
     },
-    addProductCart(context, productObject) {
+    addProductCart(context, key) {
       // Check if Product in the cart
-      context.commit('pushCart', productObject)
+      console.log('i am in actions')
+      context.commit('pushCart', key)
     },
     removeProductCart(context, productObject) {
       context.commit('pushProduct', productObject)

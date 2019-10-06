@@ -10,12 +10,7 @@
                    
                 </h5>
                 <p class="card-text">
-                    {{ products[productId].name }}
-                    <p style="color: #bbbbbb;">
-                        <!-- The Content that was placed between the Child Component Tag <product-box> wil be
-                        displayed by the <slot> tag. -->
-                        <slot></slot>
-                    </p>
+                    <h3>{{ products[productId].name }}</h3>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -24,8 +19,18 @@
                 <button class="btn btn-primary" href="#">
                     Add to Cart
                 </button>
+                <p style="color: #bbbbbb;">
+                    <!-- The Content that was placed between the Child Component Tag <product-box> wil be
+                    displayed by the <slot> tag. -->
+                    <slot></slot>
+                </p>
             </div>
+            <button @click="$emit('DeleteItem', productId)">Emit Event</button>
         </div>
+
+        <!-- Global Component that we import globally in main.js. It is accessible from every Part of our App -->
+        <blog-post :post="{title:'Global Component', content: 'Component Text'}"/>
+        <hr>
     </div>
 </template>
 
@@ -33,7 +38,10 @@
 export default {
     name: "ProductBoxParentChild",
     // Parameters that this Component will expect from the Parent/Importer.
-    props: ['productId'],
+    props: ['productId', 'someDataName'],
+    mounted() {
+        console.log(this.someDataName)
+    },
     computed: {
         products: {
             get() {

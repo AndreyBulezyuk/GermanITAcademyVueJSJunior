@@ -34,9 +34,14 @@
                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     
+                    <hr>
 
+                    <h4>Price: {{ product.price }} $</h4>
+
+                    <button @click="addItem(key)">Add To Cart</button>
                 </div>
             </div>
+            Vuex Cart Array: {{ this.$store.state.cart }} 
          </div>
 
     </div>
@@ -45,6 +50,12 @@
 <script>
 export default {
     name: "ProductListVuex",
+    methods:{
+        addItem(key) {
+            // Add Item to Vuex.state.cart
+            this.$store.dispatch('addProductCart', key)
+        }
+    },
     computed: {
         products: {
             get() {
